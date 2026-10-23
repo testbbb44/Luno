@@ -1,0 +1,447 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;450;500;550;600;650;700&family=Manrope:wght@400;500;600;650;700;750;800&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@layer base {
+  :root {
+    --background: 0 0% 100%; --foreground: 218 25% 12%;
+    --card: 0 0% 100%; --card-foreground: 218 25% 12%;
+    --popover: 0 0% 100%; --popover-foreground: 218 25% 12%;
+    --primary: 221 86% 51%; --primary-foreground: 0 0% 100%;
+    --secondary: 218 32% 96%; --secondary-foreground: 218 25% 12%;
+    --muted: 218 32% 96%; --muted-foreground: 217 12% 43%;
+    --accent: 218 40% 95%; --accent-foreground: 221 86% 45%;
+    --destructive: 0 72% 47%; --destructive-foreground: 0 0% 100%;
+    --border: 216 22% 90%; --input: 216 22% 86%; --ring: 221 86% 51%; --radius: 0.85rem;
+  }
+  * { @apply border-border; }
+  body { margin: 0; color: #17202b; background: #fff; font-family: 'DM Sans', sans-serif; -webkit-font-smoothing: antialiased; }
+  h1,h2,h3,h4 { font-family: 'Manrope', sans-serif; letter-spacing: -.045em; }
+  button,a,input,select,textarea,summary { -webkit-tap-highlight-color: transparent; }
+  button:focus-visible,a:focus-visible,summary:focus-visible { outline: 3px solid #88aaff; outline-offset: 4px; }
+  input,textarea,select { font-size: 16px; }
+  html { scroll-behavior: smooth; scroll-padding-top: 100px; }
+  ::selection { background: #dce9ff; color: #12398a; }
+}
+[data-radix-select-content] { z-index: 9999 !important; }
+.hide-scrollbar,.scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+.hide-scrollbar::-webkit-scrollbar,.scrollbar-hide::-webkit-scrollbar { display: none; }
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-thumb { background: #b8c4d2; border-radius: 9px; }
+.lv-container { width: min(1240px, calc(100% - 80px)); margin-inline: auto; }
+.lv-brand { display: inline-flex; align-items: center; gap: 10px; font-family: 'Manrope',sans-serif; font-size: 24px; font-weight: 800; letter-spacing: -1.2px; color: #152337; text-decoration: none; flex-shrink: 0; }
+.lv-brand-icon { display: block; width: 37px; height: 37px; object-fit: contain; flex-shrink: 0; }
+.lv-brand-dot { color: #1458ed; }
+.lv-header { background: #fff; border-bottom: 1px solid #e9edf2; position: sticky; top: 0; z-index: 40; }
+.lv-nav { min-height: 86px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+.lv-desktop-nav { display: flex; align-items: center; gap: 29px; font-size: 13px; font-weight: 500; color: #526072; }
+.lv-desktop-nav a:hover,.lv-footer a:hover { color: #1458ed; }
+.lv-nav-actions { display: flex; align-items: center; gap: 24px; }
+.lv-text-button { font-size: 13px; font-weight: 650; color: #1c2738; }
+.lv-button { display: inline-flex; align-items: center; justify-content: center; gap: 16px; border-radius: 999px; border: 1px solid transparent; background: #1458ed; color: #fff; padding: 16px 24px; font-size: 14px; font-weight: 600; min-height: 49px; transition: background .2s, transform .2s; text-decoration: none; }
+.lv-button:hover { background: #1048c5; transform: translateY(-1px); }
+.lv-nav .lv-button { font-size: 12px; padding: 11px 20px; min-height: 40px; }
+.lv-button-outline { background: #fff; border-color: #dfe5ed; color: #17202b; }
+.lv-button-outline:hover { background: #f5f8fe; }
+.lv-menu-button { display: none; }
+.lv-mobile-nav { display: flex; flex-direction: column; padding: 10px 24px 20px; gap: 16px; border-top: 1px solid #e9edf2; }
+.lv-mobile-nav a { display: flex; align-items: center; justify-content: space-between; }
+.lv-hero { display: grid; grid-template-columns: 1.08fr 1fr; align-items: center; gap: 90px; padding-block: 74px 78px; }
+.lv-pill { display: inline-flex; align-items: center; gap: 9px; font-size: 10px; font-weight: 650; letter-spacing: 1.4px; color: #4a5665; border: 1px solid #e1e6ed; border-radius: 50px; padding: 8px 12px; }
+.lv-pill>span,.lv-live>span,.lv-dot { width: 6px; height: 6px; display: inline-block; border-radius: 50%; background: #16885d; }
+.lv-hero h1 { font-size: clamp(48px, 5.8vw, 78px); line-height: 1.06; font-weight: 650; margin: 26px 0 25px; letter-spacing: -4px; color: #141e2c; }
+.lv-hero h1>span { color: #1458ed; }
+.lv-hero-copy>p { max-width: 430px; font-size: 16px; line-height: 1.8; color: #677283; }
+.lv-hero-actions { display: flex; align-items: center; gap: 24px; margin-top: 32px; }
+.lv-secondary-link { display: inline-flex; gap: 8px; align-items: center; color: #25344b; font-size: 13px; font-weight: 550; }
+.lv-hero-caption { display: flex; align-items: center; gap: 9px; color: #88919e; font-size: 11px; margin-top: 28px; }
+.lv-hero-visual { background: #eef3fc; border: 1px solid #e5ecf8; border-radius: 28px; padding: 28px 32px 24px; position: relative; }
+.lv-visual-top { display: flex; align-items: center; justify-content: space-between; color: #1458ed; gap: 12px; }
+.lv-eyebrow { font-size: 10px; letter-spacing: 1.5px; font-weight: 650; line-height: 1.6; color: #69788d; }
+.lv-visual-top .lv-eyebrow { font-size: 9px; color: #45669f; }
+.lv-visual-title { font-family: 'Manrope',sans-serif; font-size: 41px; letter-spacing: -2px; font-weight: 600; line-height: 1.15; margin: 18px 0 24px; }
+.lv-visual-title>span { color: #1458ed; }
+.lv-preview-wallet { background: #fff; border: 1px solid #e2e8f1; border-radius: 18px; padding: 20px 24px; box-shadow: 0 12px 24px #1b3b7110; }
+.lv-preview-label { display: flex; align-items: center; gap: 6px; font-size: 10px; color: #7b8798; margin-bottom: 12px; }
+.lv-preview-label>span:first-child { margin-right: auto; }
+.lv-preview-coin { display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid #f0f2f5; }
+.lv-preview-coin>div:last-child { margin-left: auto; text-align: right; }
+.lv-preview-coin strong { display: block; font-size: 12px; font-weight: 600; }
+.lv-preview-coin small { display: block; font-size: 10px; margin-top: 3px; color: #8590a0; }
+.lv-preview-coin small>span { color: #8590a0; font-size: 9px; }
+.lv-preview-link { font-size: 11px; font-weight: 600; color: #1458ed; display: flex; align-items: center; justify-content: space-between; padding-top: 16px; }
+.lv-visual-foot { display: flex; align-items: center; justify-content: space-between; margin-top: 18px; font-size: 11px; color: #6c7f9d; line-height: 1.5; }
+.lv-visual-symbol { font-size: 51px; line-height: 1; color: #1458ed; }
+.lv-value-strip { background: #fafbfd; border-block: 1px solid #edf0f5; }
+.lv-value-strip>.lv-container { display: flex; justify-content: space-between; gap: 24px; padding-block: 24px; }
+.lv-value-strip span { display: inline-flex; gap: 12px; align-items: center; font-size: 12px; color: #536176; }
+.lv-value-strip svg { color: #1458ed; }
+.lv-market-wrap { padding-block: 84px; }
+.lv-section-heading { display: flex; align-items: end; justify-content: space-between; gap: 28px; margin-bottom: 32px; }
+.lv-section-heading h2,.lv-faq h2 { font-size: clamp(28px,3vw,38px); font-weight: 600; line-height: 1.2; letter-spacing: -1.8px; margin-top: 11px; }
+.lv-section-heading>p,.lv-faq>div>p { color: #788294; font-size: 13px; line-height: 1.8; }
+.lv-live { display: inline-flex; align-items: center; gap: 7px; font-size: 10px; color: #6a788b; border: 1px solid #e5e9ef; border-radius: 50px; padding: 7px 11px; white-space: nowrap; }
+.lv-tickers { display: grid; grid-template-columns: repeat(4,1fr); gap: 14px; margin-bottom: 24px; }
+.lv-ticker { text-align: left; border: 1px solid #e5e9ef; border-radius: 15px; padding: 18px; position: relative; overflow: hidden; background: #fff; transition: border-color .2s,background .2s; }
+.lv-ticker:hover { background: #f8faff; }
+.lv-ticker.is-selected { border-color: #759cf2; background: #f8faff; }
+.lv-ticker-top { display: flex; gap: 9px; align-items: center; }
+.lv-ticker-top>span:nth-child(2) { font-size: 12px; font-weight: 600; }
+.lv-ticker-top small { display: block; font-size: 10px; color: #8994a5; font-weight: 400; }
+.lv-ticker-top>svg { margin-left: auto; }
+.lv-coin-mark { width: 34px; height: 34px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 19px; font-weight: 600; background: #eef1f5; color: #202a38; flex-shrink: 0; }
+.lv-coin-bitcoin { background: #fff1dc; color: #d98516; }
+.lv-coin-ethereum { background: #edf2ff; color: #5673b8; }
+.lv-coin-solana { background: #e6f5f0; color: #118661; }
+.lv-coin-binancecoin { background: #fff8de; color: #ac850d; }
+.lv-ticker-price { margin-top: 17px; display: flex; align-items: start; gap: 10px; font-size: 21px; font-weight: 650; letter-spacing: -.8px; }
+.lv-ticker-price>span { margin-left: auto; font-size: 10px; font-weight: 500; padding-top: 4px; letter-spacing: 0; text-align: right; }
+.lv-ticker-price small { display: block; color: #8a96a6; font-size: 9px; }
+.lv-sparkline { width: 100%; height: 35px; margin-top: 12px; }
+.lv-positive { color: #12815b !important; }
+.lv-negative { color: #bf4141 !important; }
+.lv-muted { color: #7c8798; }
+.lv-market-charts { display: grid; grid-template-columns: minmax(0,1.9fr) minmax(0,1fr); border: 1px solid #e5e9ef; border-radius: 18px; background: #fff; overflow: hidden; }
+.lv-price-panel { padding: 25px 25px 12px 17px; min-width: 0; }
+.lv-volume-panel { border-left: 1px solid #edf0f5; padding: 26px 25px 20px; min-width: 0; }
+.lv-chart-heading { display: flex; align-items: start; justify-content: space-between; gap: 12px; padding-left: 8px; }
+.lv-chart-heading>div>span { display: inline-flex; gap: 4px; align-items: center; font-size: 11px; }
+.lv-chart-heading h3 { font-size: 29px; font-weight: 650; letter-spacing: -1px; margin: 6px 0; line-height: 1.2; font-variant-numeric: tabular-nums; }
+.lv-chart-heading>svg { color: #879ec7; }
+.lv-range { display: flex; align-items: center; border: 1px solid #e5e9ef; border-radius: 8px; padding: 3px; }
+.lv-range button { font-size: 10px; padding: 6px 9px; border-radius: 5px; color: #8490a2; font-weight: 600; }
+.lv-range button.active { color: #1458ed; background: #edf3ff; }
+.lv-price-chart { height: 260px; margin-top: 15px; }
+.lv-volume-chart { height: 130px; margin-top: 24px; }
+.lv-chart-note { font-size: 9px; line-height: 1.6; color: #8e98a7; margin: 8px 0 16px; }
+.lv-market-detail { display: flex; justify-content: space-between; gap: 10px; font-size: 10px; border-top: 1px solid #edf0f5; padding-top: 12px; margin-top: 12px; color: #7c8798; }
+.lv-market-detail strong { color: #435168; font-weight: 500; text-align: right; }
+.lv-market-source { display: flex; justify-content: space-between; gap: 16px; margin-top: 15px; font-size: 10px; color: #9099a7; }
+.lv-market-source a { text-decoration: underline; text-underline-offset: 3px; }
+.lv-notice { display: flex; align-items: center; justify-content: space-between; gap: 14px; background: #f5f8fc; border: 1px solid #e2e9f3; border-radius: 10px; padding: 16px; font-size: 12px; color: #566880; margin-bottom: 16px; }
+.lv-notice button { display: inline-flex; align-items: center; gap: 6px; color: #1458ed; flex-shrink: 0; }
+.lv-market-loading,.lv-chart-empty { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; color: #8793a6; font-size: 12px; min-height: 180px; text-align: center; padding: 20px; height: 100%; }
+.lv-chart-empty>span { font-size: 10px; }
+.lv-market-loading { border: 1px solid #e5e9ef; border-radius: 16px; }
+.lv-how { padding-block: 68px; background: #f8fafc; border-block: 1px solid #edf0f5; }
+.lv-feature-grid,.lv-plan-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 22px; }
+.lv-feature { padding: 28px; background: #fff; border: 1px solid #e5e9ef; border-radius: 16px; }
+.lv-feature-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+.lv-feature-top>span:last-child { font-size: 11px; color: #a7b1bf; }
+.lv-icon-box { width: 45px; height: 45px; display: grid; place-items: center; color: #1458ed; background: #eff4ff; border-radius: 12px; }
+.lv-feature h3 { font-size: 18px; font-weight: 650; letter-spacing: -.6px; margin-bottom: 13px; }
+.lv-feature p { font-size: 13px; line-height: 1.85; color: #7c8798; }
+.lv-plans { padding-block: 86px; }
+.lv-plan { border: 1px solid #e5e9ef; border-radius: 17px; padding: 27px; }
+.lv-plan-featured { border-color: #7fa4f5; background: #f7faff; }
+.lv-plan-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; font-size: 12px; color: #65758e; font-weight: 500; }
+.lv-plan-label { font-size: 8px; color: #1458ed; background: #e4edff; border-radius: 20px; padding: 5px 8px; }
+.lv-plan h3 { font-size: 36px; font-weight: 600; letter-spacing: -1.5px; margin: 28px 0 18px; }
+.lv-plan h3 small { display: block; font-family: 'DM Sans',sans-serif; font-size: 11px; font-weight: 400; color: #8a94a4; letter-spacing: 0; margin-top: 5px; }
+.lv-plan>p { font-size: 12px; color: #8190a2; }
+.lv-plan-rule { height: 1px; background: #e5e9ef; margin: 25px 0; }
+.lv-plan ul { display: grid; gap: 14px; font-size: 12px; color: #66768d; margin-bottom: 28px; }
+.lv-plan li { display: flex; align-items: center; gap: 10px; }
+.lv-plan li svg { color: #1458ed; }
+.lv-plan .lv-button { width: 100%; justify-content: space-between; border-radius: 10px; font-size: 12px; padding: 13px 16px; }
+.lv-plan-disclaimer { max-width: 700px; text-align: center; font-size: 10px; line-height: 1.7; color: #96a0ad; margin: 25px auto 0; }
+.lv-faq { display: grid; grid-template-columns: 1fr 1.3fr; gap: 90px; padding-bottom: 80px; }
+.lv-faq>div>p { margin-top: 17px; }
+.lv-faq details { border-bottom: 1px solid #e5e9ef; padding: 22px 0; }
+.lv-faq details:first-child { border-top: 1px solid #e5e9ef; }
+.lv-faq summary { display: flex; align-items: center; justify-content: space-between; gap: 20px; font-size: 14px; font-weight: 550; cursor: pointer; list-style: none; }
+.lv-faq summary::-webkit-details-marker { display: none; }
+.lv-faq summary svg { color: #8290a3; flex-shrink: 0; transition: transform .2s; }
+.lv-faq details[open] svg { transform: rotate(180deg); }
+.lv-faq details p { font-size: 13px; line-height: 1.8; color: #7c8798; margin-top: 16px; }
+.lv-bottom-cta { background: #edf3ff; border: 1px solid #e1eafd; border-radius: 22px; padding: 46px 50px; display: flex; align-items: center; justify-content: space-between; gap: 30px; }
+.lv-bottom-cta h2 { font-size: 37px; letter-spacing: -1.6px; line-height: 1.2; font-weight: 600; margin-top: 12px; }
+.lv-bottom-cta .lv-eyebrow { color: #6c85b0; }
+.lv-footer { display: flex; justify-content: space-between; align-items: center; padding-block: 55px 35px; gap: 25px; }
+.lv-footer p { font-size: 11px; color: #93a0b2; margin-top: 12px; }
+.lv-footer>div:last-child { display: flex; gap: 24px; font-size: 11px; color: #7c8798; }
+.lv-footer>div:last-child>span { color: #a3acb9; }
+/* Account screens use the same restrained surfaces and typography. */
+.lv-dashboard { background: #f7f9fc !important; }
+.lv-dashboard>header { background: #fff; position: sticky; top: 0; z-index: 30; border-color: #e5e9ef; }
+.lv-dashboard main { padding-top: 34px; }
+.lv-account-nav { display: flex; align-items: center; gap: 24px; font-size: 12px; color: #728097; }
+.lv-account-nav a:first-child { color: #1458ed; font-weight: 600; }
+.lv-account-welcome { display: flex; align-items: end; justify-content: space-between; gap: 24px; margin-bottom: 28px; }
+.lv-account-welcome h1 { font-size: 31px; font-weight: 600; letter-spacing: -1.2px; margin-top: 9px; }
+.lv-account-welcome p { color: #8894a4; font-size: 12px; margin-top: 8px; }
+.lv-account-status { display: flex; align-items: center; gap: 8px; font-size: 10px; border: 1px solid #dfe5ed; border-radius: 30px; background: #fff; padding: 9px 12px; color: #6b798c; }
+.lv-account-status>span { background: #16885d; width: 6px; height: 6px; border-radius: 50%; }
+.lv-dashboard .lv-market { margin-bottom: 36px; }
+.lv-dashboard .lv-market .lv-section-heading h2 { font-size: 22px; letter-spacing: -.8px; }
+.lv-dashboard .lv-market .lv-section-heading { margin-bottom: 20px; }
+.lv-dashboard .rounded-lg.border { box-shadow: none; border-radius: 16px; border-color: #e4e9f0; }
+.lv-dashboard main>.grid:first-of-type>div { background: #fff; }
+.lv-dashboard .lv-market .lv-price-chart { height: 230px; }
+.lv-auth-modal { max-height: calc(100dvh - 32px); overflow-y: auto; }
+.lv-auth-modal input { border-radius: 9px; min-height: 44px; }
+.lv-auth-modal button[type=submit] { border-radius: 9px; min-height: 46px; }
+@media(min-width: 1500px) { .lv-hero { padding-block: 100px; } }
+@media(max-width: 1100px) {
+ .lv-container { width: calc(100% - 48px); }
+ .lv-desktop-nav { gap: 17px; font-size: 11px; }
+ .lv-nav-actions { gap: 16px; }
+ .lv-hero { gap: 40px; }
+ .lv-hero-actions { gap: 16px; flex-wrap: wrap; }
+ .lv-hero h1 { letter-spacing: -3px; }
+ .lv-hero-visual { padding: 24px; }
+ .lv-ticker { padding: 14px; }
+ .lv-ticker-price { font-size: 18px; }
+ .lv-market-charts { grid-template-columns: minmax(0,1.6fr) minmax(0,1fr); }
+ .lv-feature,.lv-plan { padding: 22px; }
+ .lv-faq { gap: 40px; }
+ .lv-account-nav { gap: 15px; }
+}
+@media(max-width: 800px) {
+ .lv-desktop-nav,.lv-account-nav { display: none; }
+ .lv-menu-button { display: grid; place-items: center; }
+ .lv-nav { min-height: 74px; }
+ .lv-hero { gap: 30px; padding-block: 48px; }
+ .lv-hero h1 { font-size: 50px; letter-spacing: -2.8px; }
+ .lv-hero-copy>p { font-size: 14px; }
+ .lv-hero-visual { padding: 21px; border-radius: 20px; }
+ .lv-visual-title { font-size: 30px; }
+ .lv-visual-top .lv-eyebrow { font-size: 7px; }
+ .lv-preview-wallet { padding: 16px; }
+ .lv-tickers { grid-template-columns: repeat(2,minmax(0,1fr)); }
+ .lv-market-charts { grid-template-columns: 1fr; }
+ .lv-volume-panel { border-left: 0; border-top: 1px solid #edf0f5; }
+ .lv-volume-chart { height: 130px; }
+ .lv-feature-grid,.lv-plan-grid { gap: 12px; }
+ .lv-feature { padding: 18px; }
+ .lv-feature h3 { font-size: 16px; }
+ .lv-feature p { font-size: 12px; }
+ .lv-plan { padding: 18px; }
+ .lv-plan h3 { font-size: 30px; }
+ .lv-plan-top { align-items: start; flex-direction: column; }
+ .lv-footer { align-items: start; }
+ .lv-footer>div:last-child { flex-wrap: wrap; justify-content: end; max-width: 250px; gap: 16px; }
+ .lv-section-heading>p { font-size: 11px; }
+}
+@media(max-width: 600px) {
+ .lv-container { width: calc(100% - 36px); }
+ .lv-brand { font-size: 21px; }
+ .lv-brand-icon { display: block; width: 37px; height: 37px; object-fit: contain; flex-shrink: 0; }
+ .lv-nav { gap: 12px; min-height: 68px; }
+ .lv-nav-actions { gap: 17px; }
+ .lv-nav-cta { display: none; }
+ .lv-hero { grid-template-columns: 1fr; gap: 34px; padding-block: 38px; }
+ .lv-hero h1 { font-size: 58px; letter-spacing: -3px; margin-top: 23px; }
+ .lv-hero-copy>p { max-width: 100%; font-size: 14px; }
+ .lv-hero-actions { gap: 18px; margin-top: 25px; }
+ .lv-button { padding: 14px 18px; font-size: 12px; gap: 10px; }
+ .lv-secondary-link { font-size: 11px; }
+ .lv-hero-caption { margin-top: 21px; }
+ .lv-hero-visual { padding: 23px; }
+ .lv-visual-title { font-size: 36px; }
+ .lv-visual-top .lv-eyebrow { font-size: 8px; }
+ .lv-preview-coin { padding-block: 14px; }
+ .lv-visual-foot { margin-top: 17px; }
+ .lv-value-strip>.lv-container { flex-direction: column; gap: 17px; padding-block: 23px; }
+ .lv-value-strip span { font-size: 12px; }
+ .lv-market-wrap { padding-block: 45px; }
+ .lv-section-heading { flex-wrap: wrap; gap: 17px; margin-bottom: 25px; }
+ .lv-section-heading h2,.lv-faq h2 { font-size: 29px; letter-spacing: -1px; }
+ .lv-section-heading>p br { display: none; }
+ .lv-tickers { gap: 10px; margin-bottom: 16px; }
+ .lv-ticker { padding: 13px; border-radius: 12px; }
+ .lv-ticker-top { gap: 6px; }
+ .lv-ticker-top>svg { display: none; }
+ .lv-ticker-top>span:nth-child(2) { font-size: 11px; }
+ .lv-ticker .lv-coin-mark { width: 29px; height: 29px; font-size: 17px; }
+ .lv-ticker-price { font-size: 17px; margin-top: 14px; flex-wrap: wrap; gap: 3px; }
+ .lv-ticker-price>span { margin-left: 0; width: 100%; text-align: left; display: flex; align-items: center; gap: 5px; }
+ .lv-price-panel { padding: 20px 10px 10px 4px; }
+ .lv-chart-heading { padding-left: 12px; }
+ .lv-chart-heading h3 { font-size: 26px; }
+ .lv-price-chart { height: 230px; }
+ .lv-range button { padding-inline: 7px; }
+ .lv-volume-panel { padding: 21px 17px; }
+ .lv-volume-panel .lv-chart-heading { padding-left: 0; }
+ .lv-market-source { flex-direction: column; gap: 5px; }
+ .lv-how { padding-block: 42px; }
+ .lv-feature-grid,.lv-plan-grid { grid-template-columns: 1fr; gap: 16px; }
+ .lv-feature { padding: 25px; }
+ .lv-feature-top { margin-bottom: 23px; }
+ .lv-feature h3 { font-size: 20px; }
+ .lv-feature p { font-size: 13px; }
+ .lv-plans { padding-block: 45px; }
+ .lv-plan { padding: 27px; }
+ .lv-plan-top { align-items: center; flex-direction: row; }
+ .lv-plan h3 { font-size: 37px; }
+ .lv-faq { grid-template-columns: 1fr; gap: 26px; padding-bottom: 45px; }
+ .lv-faq details { padding-block: 19px; }
+ .lv-faq summary { font-size: 13px; }
+ .lv-bottom-cta { padding: 29px; flex-direction: column; align-items: start; gap: 24px; }
+ .lv-bottom-cta h2 { font-size: 31px; }
+ .lv-footer { flex-direction: column; gap: 25px; padding-block: 34px; }
+ .lv-footer>div:last-child { justify-content: start; max-width: 100%; }
+ .lv-footer>div:last-child>span { width: 100%; }
+ .lv-account-welcome { align-items: start; flex-direction: column; gap: 14px; }
+ .lv-account-welcome h1 { font-size: 27px; }
+ .lv-dashboard .lv-market .lv-section-heading { gap: 12px; }
+}
+@media(prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *,*::before,*::after { animation-duration: .01ms !important; transition-duration: .01ms !important; } }
+
+.lv-chart-retry { color: #1458ed; text-decoration: underline; text-underline-offset: 3px; font-size: 12px; }
+/* Wallet-inspired home layout, shown only on mobile account screens. */
+.lv-mobile-wallet { display: none; }
+@media (max-width: 767px) {
+  .lv-dashboard .lv-dashboard-desktop-header { display: none; }
+  .lv-dashboard main { padding-top: 0; }
+  .lv-dashboard .lv-account-welcome, .lv-dashboard .lv-dashboard-desktop-actions { display: none; }
+  .lv-mobile-wallet { display: block; background: #fff; margin-inline: -16px; padding: 0 20px 30px; margin-bottom: 25px; }
+  .lv-wallet-topbar { min-height: 75px; display: flex; align-items: center; justify-content: space-between; color: #919ba3; }
+  .lv-wallet-topbar h1 { color: #10151b; font-size: 22px; font-weight: 700; letter-spacing: -.6px; }
+  .lv-wallet-topbar>a { display: grid; place-items: center; width: 30px; height: 35px; }
+  .lv-wallet-settings { position: relative; }
+  .lv-wallet-settings summary { cursor: pointer; list-style: none; padding: 8px 0; }
+  .lv-wallet-settings summary::-webkit-details-marker, .lv-wallet-identity summary::-webkit-details-marker { display: none; }
+  .lv-wallet-search { display: flex; align-items: center; gap: 12px; background: #f4f5f8; border-radius: 999px; padding: 0 16px; min-height: 45px; margin-block: 7px 28px; color: #939da7; }
+  .lv-wallet-search input { background: transparent; outline: none; border: 0; width: 100%; min-width: 0; height: 45px; font-size: 16px; color: #1b2531; }
+  .lv-wallet-search input::placeholder { color: #a2a9b1; }
+  .lv-wallet-search input::-webkit-search-cancel-button { display: none; }
+  .lv-wallet-search:focus-within { box-shadow: 0 0 0 2px #afc8fa; }
+  .lv-wallet-account-row { display: flex; align-items: start; justify-content: space-between; gap: 12px; }
+  .lv-wallet-account { min-width: 0; flex: 1; }
+  .lv-wallet-name-row { display: flex; align-items: center; gap: 8px; }
+  .lv-wallet-name-row>button { color: #939da7; flex-shrink: 0; }
+  .lv-wallet-identity { position: relative; min-width: 0; }
+  .lv-wallet-identity summary { display: flex; gap: 7px; align-items: center; cursor: pointer; list-style: none; }
+  .lv-wallet-identity summary span { text-transform: uppercase; font-size: 12px; font-weight: 700; letter-spacing: -.15px; white-space: nowrap; text-overflow: ellipsis; overflow: hidden; }
+  .lv-wallet-identity summary svg { color: #959ea8; flex-shrink: 0; }
+  .lv-wallet-balance { font-size: 23px; color: #10151b; font-weight: 750; letter-spacing: -.6px; margin-top: 7px; line-height: 1.25; font-variant-numeric: tabular-nums; }
+  .lv-wallet-balance>span { font-size: 13px; color: #8995a4; letter-spacing: 0; font-weight: 400; }
+  .lv-wallet-balance-caption { font-size: 10px; color: #929ba7; margin-top: 5px; }
+  .lv-wallet-tools { display: flex; gap: 8px; flex-shrink: 0; }
+  .lv-wallet-tools button { display: grid; place-items: center; width: 34px; height: 36px; background: #f4f5f8; color: #959fa9; border-radius: 5px; }
+  .lv-wallet-tools button:hover { color: #1458ed; background: #eaf1ff; }
+  .lv-wallet-actions { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; padding-top: 46px; }
+  .lv-wallet-actions>button { display: flex; flex-direction: column; align-items: center; gap: 12px; font-size: 14px; color: #1c232c; font-weight: 550; }
+  .lv-wallet-actions>button>span { display: grid; place-items: center; width: 60px; height: 60px; background: #f4f5f8; border-radius: 50%; transition: background .2s, color .2s; }
+  .lv-wallet-actions>button:hover>span { color: #1458ed; background: #eaf1ff; }
+  .lv-wallet-actions>button:disabled { opacity: .45; cursor: not-allowed; }
+  .lv-wallet-popover { position: absolute; z-index: 35; top: calc(100% + 9px); left: 0; width: 240px; padding: 18px; border: 1px solid #e4e9ef; border-radius: 12px; background: #fff; box-shadow: 0 8px 28px #14203215; color: #263446; }
+  .lv-wallet-popover strong { font-size: 12px; }
+  .lv-wallet-popover p { font-size: 11px; color: #8a96a5; overflow-wrap: anywhere; margin-top: 8px; }
+  .lv-wallet-popover button { display: flex; align-items: center; gap: 9px; font-size: 12px; padding-top: 16px; }
+  .lv-wallet-search-link { display: block; font-size: 11px; margin-top: 22px; color: #1458ed; text-align: center; }
+  .lv-dashboard-stats { gap: 12px; }
+  #investments, #transactions, #portfolio-performance { scroll-margin-top: 20px; }
+}
+@media (min-width: 640px) and (max-width: 767px) { .lv-mobile-wallet { margin-inline: -24px; padding-inline: 28px; } }
+@media (max-width: 359px) {
+  .lv-mobile-wallet { padding-inline: 16px; }
+  .lv-wallet-tools { gap: 5px; }
+  .lv-wallet-tools button { width: 29px; height: 32px; }
+  .lv-wallet-identity summary span { font-size: 10px; }
+  .lv-wallet-actions { gap: 8px; }
+  .lv-wallet-actions>button>span { width: 54px; height: 54px; }
+}
+.lv-wallet-page { min-height: 100dvh; background: #f7f9fc; }
+.lv-connect-main { padding-block: 54px 70px; }
+.lv-connect-intro { max-width: 600px; margin-bottom: 38px; }
+.lv-connect-intro h1 { font-size: clamp(32px,4vw,45px); font-weight: 600; line-height: 1.15; margin-block: 12px 17px; }
+.lv-connect-intro>p { font-size: 15px; line-height: 1.8; color: #7c8798; }
+.lv-connect-grid { display: grid; grid-template-columns: minmax(0,1.3fr) minmax(0,1fr); gap: 50px; align-items: start; }
+.lv-connect-card { background: #fff; border: 1px solid #e2e8f0; border-radius: 20px; padding: 34px; min-width: 0; }
+.lv-connect-card-heading { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 25px; }
+.lv-connection-status { display: flex; align-items: center; gap: 7px; font-size: 10px; color: #7e8b9d; }
+.lv-connection-status>span { width: 6px; height: 6px; border-radius: 50%; background: #aeb7c3; }
+.lv-connection-status.is-connected { color: #12815b; }
+.lv-connection-status.is-connected>span { background: #12815b; }
+.lv-connect-card h2 { font-size: 25px; font-weight: 600; letter-spacing: -1px; }
+.lv-connect-card>p { font-size: 13px; line-height: 1.8; color: #8090a4; margin-top: 13px; }
+.lv-provider-row { display: flex; align-items: center; gap: 14px; background: #fafbfd; border: 1px solid #e8edf4; border-radius: 13px; padding: 20px; margin-block: 28px; }
+.lv-connect-provider-icon { display: grid; place-items: center; width: 43px; height: 43px; background: #eaf1ff; border-radius: 12px; color: #1458ed; flex-shrink: 0; }
+.lv-provider-row strong,.lv-provider-row div>span { display: block; }
+.lv-provider-row strong { font-size: 13px; font-weight: 600; }
+.lv-provider-row div>span { font-size: 10px; margin-top: 5px; color: #8a96a6; }
+.lv-provider-indicator { width: 7px; height: 7px; border-radius: 50%; background: #aeb7c3; margin-left: auto; flex-shrink: 0; }
+.lv-provider-indicator.is-detected { background: #12815b; }
+.lv-connect-button { width: 100%; border-radius: 11px; }
+.lv-connect-button:disabled { opacity: .6; cursor: wait; transform: none; }
+.lv-connect-card .lv-connect-footnote { font-size: 10px; margin-top: 20px; line-height: 1.7; }
+.lv-connect-card .lv-connect-error { background: #fff4f4; border: 1px solid #f3d7d7; color: #a73f3f; padding: 14px; border-radius: 10px; margin-bottom: 20px; font-size: 12px; }
+.lv-connect-guide { padding-top: 12px; }
+.lv-connect-guide h2 { font-size: 29px; font-weight: 600; line-height: 1.25; margin-top: 12px; }
+.lv-connect-guide ol { display: grid; gap: 23px; margin-top: 28px; }
+.lv-connect-guide li { display: flex; align-items: start; gap: 17px; }
+.lv-connect-guide li>span { background: #edf2fa; border-radius: 50%; color: #6885b3; font-size: 10px; display: grid; place-items: center; width: 30px; height: 30px; flex-shrink: 0; }
+.lv-connect-guide li strong { font-size: 13px; font-weight: 550; }
+.lv-connect-guide li p { font-size: 12px; line-height: 1.8; color: #8a96a6; margin-top: 5px; max-width: 320px; }
+.lv-connect-security { display: flex; align-items: start; gap: 11px; color: #12815b; border-top: 1px solid #e2e8f0; padding-top: 23px; margin-top: 25px; }
+.lv-connect-security svg { flex-shrink: 0; }
+.lv-connect-security p { font-size: 11px; line-height: 1.8; }
+.lv-connected-details { padding: 19px; border: 1px solid #e2e8f0; background: #fafbfd; border-radius: 12px; margin-block: 25px; }
+.lv-connected-details>div { display: flex; justify-content: space-between; gap: 12px; font-size: 11px; color: #8492a4; }
+.lv-connected-details button { color: #1458ed; display: inline-flex; gap: 6px; align-items: center; }
+.lv-connected-details code { display: block; overflow-wrap: anywhere; font-size: 13px; line-height: 1.8; color: #263d60; margin-block: 15px; user-select: all; }
+.lv-connected-network { padding-top: 16px; border-top: 1px solid #e2e8f0; }
+.lv-connected-network strong { color: #536580; font-weight: 500; }
+.lv-connect-buttons { display: flex; flex-direction: column; gap: 18px; }
+.lv-connect-buttons .lv-button { border-radius: 11px; }
+.lv-connect-buttons .lv-text-button { display: flex; align-items: center; justify-content: center; gap: 7px; font-size: 11px; color: #7c8798; }
+.lv-connect-help { margin-top: 40px; padding: 28px; display: grid; grid-template-columns: 1fr 1fr; gap: 30px; border: 1px solid #e2e8f0; border-radius: 16px; background: #fff; }
+.lv-connect-help article { display: flex; align-items: start; gap: 15px; }
+.lv-connect-help svg { color: #7c96bd; flex-shrink: 0; }
+.lv-connect-help h3 { font-size: 15px; font-weight: 600; }
+.lv-connect-help p { color: #8a96a6; font-size: 12px; line-height: 1.8; margin-top: 8px; }
+@media(max-width: 767px) {
+  .lv-connect-main { padding-block: 32px 40px; }
+  .lv-connect-grid { grid-template-columns: 1fr; gap: 33px; }
+  .lv-connect-card { padding: 24px; border-radius: 16px; }
+  .lv-connect-help { grid-template-columns: 1fr; gap: 25px; padding: 24px; }
+  .lv-connect-intro { margin-bottom: 27px; }
+  .lv-connect-guide { padding-inline: 5px; }
+  .lv-wallet-page .lv-nav { gap: 15px; }
+  .lv-wallet-page .lv-secondary-link { font-size: 10px; }
+}
+.lv-demo-intro-card { max-width: 600px; }
+.lv-demo-intro-card .lv-connect-button { margin-top: 25px; }
+.lv-demo-badge { display: inline-flex; align-items: center; gap: 6px; color: #5978ae; background: #eef4ff; border-radius: 30px; font-size: 11px; padding: 8px 12px; }
+.lv-demo-dialog { width: calc(100% - 32px); max-width: 640px; max-height: calc(100dvh - 40px); overflow-y: auto; border-radius: 18px; padding: 28px; }
+.lv-demo-dialog .lv-wallet-search { display: flex; align-items: center; gap: 10px; background: #f4f6fa; border-radius: 12px; padding: 0 14px; color: #8290a4; min-height: 45px; margin: 4px 0; }
+.lv-demo-dialog .lv-wallet-search input { width: 100%; min-width: 0; background: transparent; outline: none; height: 45px; }
+.lv-demo-wallet-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.lv-demo-wallet-option { display: flex; align-items: center; gap: 10px; border: 1px solid #e5eaf2; border-radius: 12px; padding: 14px; text-align: left; transition: background .2s, border-color .2s; }
+.lv-demo-wallet-option:hover { background: #f5f8ff; border-color: #8aaef6; }
+.lv-demo-wallet-icon { display: grid; place-items: center; width: 36px; height: 36px; flex-shrink: 0; background: #edf3ff; color: #1458ed; border-radius: 10px; }
+.lv-demo-wallet-option strong { display: block; font-size: 12px; font-weight: 600; }
+.lv-demo-wallet-option small { display: block; font-size: 10px; color: #8995a6; margin-top: 4px; }
+.lv-demo-wallet-option>svg { margin-left: auto; flex-shrink: 0; color: #91a2bb; }
+.lv-demo-form { display: flex; flex-direction: column; gap: 15px; padding-top: 8px; }
+.lv-demo-form legend,.lv-demo-phrase-label { font-size: 12px; font-weight: 600; color: #364760; }
+.lv-demo-form fieldset { margin-top: 7px; }
+.lv-demo-count-options { display: flex; gap: 12px; margin-top: 12px; }
+.lv-demo-count-options label { display: inline-flex; align-items: center; gap: 9px; border: 1px solid #dce5f3; border-radius: 9px; padding: 12px 16px; font-size: 13px; cursor: pointer; }
+.lv-demo-count-options input { accent-color: #1458ed; }
+.lv-demo-count-options label:has(input:checked) { background: #f0f5ff; border-color: #85a9f3; color: #1458ed; }
+.lv-demo-form textarea { width: 100%; resize: none; background: #f6f8fc; border: 1px solid #e0e7f1; border-radius: 12px; padding: 16px; font-family: monospace; font-size: 14px; line-height: 1.9; color: #657c9f; }
+.lv-demo-help,.lv-demo-protocol-note,.lv-demo-empty { font-size: 12px; line-height: 1.8; color: #8492a5; }
+.lv-demo-success { display: flex; align-items: start; gap: 9px; padding: 14px; border-radius: 10px; background: #ecf8f2; color: #227658; font-size: 12px; line-height: 1.7; }
+.lv-demo-success svg { flex-shrink: 0; margin-top: 2px; }
+@media(max-width: 480px) { .lv-demo-wallet-grid { grid-template-columns: 1fr; } .lv-demo-dialog { padding: 23px; } }
+.lv-demo-wallet-icon img { display: block; width: 28px; height: 28px; object-fit: contain; border-radius: 6px; }
+.lv-demo-selected-title { display: flex; align-items: center; gap: 12px; }
+.lv-demo-methods { flex-wrap: wrap; }
+.lv-demo-example-select { width: 100%; padding: 12px; background: #f6f8fc; border: 1px solid #dce5f3; border-radius: 9px; color: #405671; font-size: 13px; }
+.lv-demo-key-errors { display: grid; gap: 9px; padding: 14px; border: 1px solid #f2d7d7; background: #fff5f5; color: #ae4141; border-radius: 10px; }
+.lv-demo-key-errors li,.lv-demo-key-valid { display: flex; align-items: start; gap: 8px; font-size: 12px; line-height: 1.7; }
+.lv-demo-key-errors svg,.lv-demo-key-valid svg { flex-shrink: 0; margin-top: 2px; }
+.lv-demo-key-valid { color: #227658; }
+.lv-demo-form .lv-connect-button:disabled { cursor: not-allowed; }
+.lv-admin-create-dialog { width: calc(100% - 32px); max-width: 740px; max-height: calc(100dvh - 32px); overflow-y: auto; border-radius: 16px; }
+.lv-admin-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 17px; }
+.lv-admin-field { display: flex; flex-direction: column; gap: 8px; font-size: 12px; color: #42536c; }
+.lv-admin-field>span { font-weight: 600; }
+.lv-admin-field small { color: #8793a5; font-size: 11px; line-height: 1.7; }
+.lv-admin-result>div { display: flex; justify-content: space-between; gap: 20px; border-bottom: 1px solid #edf0f5; padding: 10px 0; font-size: 12px; }
+.lv-admin-result dt { color: #8190a4; }
+.lv-admin-result dd { color: #25364c; overflow-wrap: anywhere; text-align: right; }
+@media(max-width: 600px) { .lv-admin-fields { grid-template-columns: 1fr; } .lv-admin-create-dialog { padding: 23px; } }
