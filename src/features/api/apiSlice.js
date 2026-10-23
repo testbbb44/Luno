@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 // export const baseUrl = "http://localhost:8000/api/";
-export const baseUrl = "https://luno-api-mw19.onrender.com/api/";
+export const baseUrl = "https://luno-apii.onrender.com/api/";
 
 const baseQuery = fetchBaseQuery({
   baseUrl: baseUrl,
